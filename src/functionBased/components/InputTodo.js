@@ -12,6 +12,7 @@ const InputTodo = (props) => {
     });
   };
 
+  /* eslint-disable */
   const handleSubmit = (e) => {
     e.preventDefault();
     if (inputText.title.trim()) {
@@ -25,16 +26,18 @@ const InputTodo = (props) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="form-container">
+    <form onSubmit={handleSubmit} className='form-container'>
       <input
-        type="text"
-        className="input-text"
-        placeholder="Add todo..."
+        type='text'
+        className='input-text'
+        placeholder='Add todo...'
         value={inputText.title}
-        name="title"
+        name='title'
         onChange={onChange}
       />
-      <button type="button" className="input-submit">Submit</button>
+      <button type='button' className='input-submit'>
+        Submit
+      </button>
     </form>
   );
 };
