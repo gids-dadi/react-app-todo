@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import {
+  Route, Routes, Switch, Link,
+} from 'react-router-dom';
 import Header from './Header';
 import InputTodo from './InputTodo';
 import TodosList from './TodosList';
 import Navbar from './Navbar';
-import { v4 as uuidv4 } from 'uuid';
-import { Route, Routes, Switch, Link } from 'react-router-dom';
 import About from '../pages/About';
 import NotMatch from '../pages/NotMatch';
 import SinglePage from '../pages/SinglePage';
@@ -13,31 +15,27 @@ const TodoContainer = () => {
   const [todos, setTodos] = useState(getInitialTodos());
 
   const handleChange = (id) => {
-    setTodos((prevState) =>
-      prevState.map((todo) => {
-        if (todo.id === id) {
-          return {
-            ...todo,
-            completed: !todo.completed,
-          };
-        }
-        return todo;
-      })
-    );
+    setTodos((prevState) => prevState.map((todo) => {
+      if (todo.id === id) {
+        return {
+          ...todo,
+          completed: !todo.completed,
+        };
+      }
+      return todo;
+    }));
   };
 
   const delTodo = (id) => {
     setTodos([
-      ...todos.filter((todo) => {
-        return todo.id !== id;
-      }),
+      ...todos.filter((todo) => todo.id !== id),
     ]);
   };
 
   const addTodoItem = (title) => {
     const newTodo = {
       id: uuidv4(),
-      title: title,
+      title,
       completed: false,
     };
     setTodos([...todos, newTodo]);
@@ -50,7 +48,7 @@ const TodoContainer = () => {
           todo.title = updatedTitle;
         }
         return todo;
-      })
+      }),
     );
   };
 
@@ -81,8 +79,8 @@ const TodoContainer = () => {
 
   const Component = () => (
     <>
-      <div className='container'>
-        <div className='inner'>
+      <div className="container">
+        <div className="inner">
           <Header />
           <InputTodo addTodoProps={addTodoItem} />
           <TodosList
@@ -98,21 +96,21 @@ const TodoContainer = () => {
 
   return (
     <div>
-      <nav className='navBar'>
-        <Link to='/' className='active-link'>
+      <nav className="navBar">
+        <Link to="/" className="active-link">
           Home
         </Link>
-        <Link to='/about' className='active-link'>
+        <Link to="/about" className="active-link">
           About
         </Link>
       </nav>
-      <div className='about'>
+      <div className="about">
         <Routes>
-          <Route path='/' element={<Component />} />
-          <Route path='about' element={<About />}>
-            <Route path=':slug' element={<SinglePage />} />
+          <Route path="/" element={<Component />} />
+          <Route path="about" element={<About />}>
+            <Route path=":slug" element={<SinglePage />} />
           </Route>
-          <Route path='*' element={<NotMatch />} />
+          <Route path="*" element={<NotMatch />} />
         </Routes>
       </div>
     </div>

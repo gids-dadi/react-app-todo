@@ -25,8 +25,8 @@ class TodoItem extends Component {
       opacity: 0.4,
       textDecoration: 'line-through',
     };
-    let viewMode = {};
-    let editMode = {};
+    const viewMode = {};
+    const editMode = {};
 
     if (this.state.editing) {
       viewMode.display = 'none';
@@ -39,7 +39,7 @@ class TodoItem extends Component {
       <li className={styles.item}>
         <div onDoubleClick={this.handleEditing} style={viewMode}>
           <input
-            type='checkbox'
+            type="checkbox"
             className={styles.checkbox}
             checked={completed}
             onChange={() => this.props.handleChangeProps(id)}
@@ -48,7 +48,7 @@ class TodoItem extends Component {
           <span style={completed ? completedStyle : null}>{title}</span>
         </div>
         <input
-          type='text'
+          type="text"
           style={editMode}
           className={styles.textInput}
           value={title}

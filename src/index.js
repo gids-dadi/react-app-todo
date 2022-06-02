@@ -14,5 +14,5 @@ root.render(
     <Router>
       <TodoContainer />
     </Router>
-  </React.StrictMode>
+  </React.StrictMode>,
 );

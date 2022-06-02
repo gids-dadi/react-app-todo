@@ -23,8 +23,8 @@ const TodoItem = (props) => {
 
   const { completed, id, title } = props.todo;
 
-  let viewMode = {};
-  let editMode = {};
+  const viewMode = {};
+  const editMode = {};
 
   if (editing) {
     viewMode.display = 'none';
@@ -32,17 +32,15 @@ const TodoItem = (props) => {
     editMode.display = 'none';
   }
 
-  useEffect(() => {
-    return () => {
-      console.log('Cleaning up...');
-    };
+  useEffect(() => () => {
+    console.log('Cleaning up...');
   }, []);
 
   return (
     <li className={styles.item}>
       <div onDoubleClick={handleEditing} style={viewMode}>
         <input
-          type='checkbox'
+          type="checkbox"
           className={styles.checkbox}
           checked={completed}
           onChange={() => props.handleChangeProps(id)}
@@ -51,7 +49,7 @@ const TodoItem = (props) => {
         <span style={completed ? completedStyle : null}>{title}</span>
       </div>
       <input
-        type='text'
+        type="text"
         style={editMode}
         className={styles.textInput}
         value={title}
